@@ -1,6 +1,9 @@
 const webpack = require("webpack");
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+  ? '/dashboard/' // Replace `my-repo-name` with your GitHub repository name
+  : '/',
   lintOnSave: false,
   configureWebpack: {
     // Set up all the aliases we use in our app.

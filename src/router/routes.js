@@ -9,6 +9,7 @@ const Icons = () => import("@/pages/Icons.vue");
 const Maps = () => import("@/pages/Maps.vue");
 const Typography = () => import("@/pages/Typography.vue");
 const TableList = () => import("@/pages/TableList.vue");
+const txtFile = () => import("@/pages/txtFile.vue");
 
 const routes = [
   {
@@ -29,6 +30,7 @@ const routes = [
       { path: "profile", name: "profile", component: Profile },
       { path: "notifications", name: "notifications", component: Notifications },
       { path: "icons", name: "icons", component: Icons },
+      { path: "txtfile", name: "txtfile", component: txtFile },
       { path: "maps", name: "maps", component: Maps },
       { path: "typography", name: "typography", component: Typography },
       { path: "table-list", name: "table-list", component: TableList },

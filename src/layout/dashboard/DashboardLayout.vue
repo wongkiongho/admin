@@ -38,6 +38,11 @@
           icon="tim-icons icon-align-center"
         />
         <sidebar-link
+          to="/txtfile"
+          :name="$t('sidebar.typography')"
+          icon="tim-icons icon-align-center"
+        />
+        <sidebar-link
           to="/dashboard?enableRTL=true"
           :name="$t('sidebar.rtlSupport')"
           icon="tim-icons icon-world"
