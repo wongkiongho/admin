@@ -2,7 +2,7 @@
   <div class="wrapper">
     <side-bar>
       <template slot="links">
-        <sidebar-link
+        <!-- <sidebar-link
           to="/dashboard"
           :name="$t('sidebar.dashboard')"
           icon="tim-icons icon-chart-pie-36"
@@ -36,17 +36,17 @@
           to="/typography"
           :name="$t('sidebar.typography')"
           icon="tim-icons icon-align-center"
-        />
+        /> -->
         <sidebar-link
           to="/txtfile"
           :name="$t('sidebar.typography')"
           icon="tim-icons icon-align-center"
         />
-        <sidebar-link
+        <!-- <sidebar-link
           to="/dashboard?enableRTL=true"
           :name="$t('sidebar.rtlSupport')"
           icon="tim-icons icon-world"
-        />
+        /> -->
       </template>
     </side-bar>
     <div class="main-panel">
