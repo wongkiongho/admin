@@ -6,8 +6,8 @@
           to="/dashboard"
           :name="$t('sidebar.dashboard')"
           icon="tim-icons icon-chart-pie-36"
-        />
-        <sidebar-link
+        /> -->
+        <!-- <sidebar-link
           to="/icons"
           :name="$t('sidebar.icons')"
           icon="tim-icons icon-atom"
@@ -39,7 +39,7 @@
         /> -->
         <sidebar-link
           to="/txtfile"
-          :name="$t('sidebar.typography')"
+          :name="$t('Generate txt file')"
           icon="tim-icons icon-align-center"
         />
         <!-- <sidebar-link

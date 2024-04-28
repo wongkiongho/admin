@@ -14,7 +14,7 @@
         <div class="input-group row">
           <label for="appPackageName" class="label">App Package Name:</label>
           <input type="text" id="appPackageName" v-model="appPackageName" required />
-          <label class="ml-2" style="font-size: 15px;">.android.app</label>
+
         </div>
         <div class="input-group row">
           <label for="appType" class="label">App Type:</label>
@@ -35,8 +35,8 @@
         <input type="file" @change="onFileChange" multiple />
       </div>
       <div class="d-flex button-container">
-        <button class="mr-3" @click="saveToLocalStorage">Save to Local Storage</button>
-        <button class="mr-3" @click="restoreFromLocalStorage">Restore from Local Storage</button>
+        <button class="mr-3" @click="saveToLocalStorage">Save Location</button>
+        <button class="mr-3" @click="restoreFromLocalStorage">Restore Location</button>
         <button @click="downloadFileNames" :disabled="files.length === 0 || !appName">
           Download File Information
         </button>
@@ -59,19 +59,6 @@ export default {
       appStoreRanking: '',
     };
   },
-  mounted() {
-    this.restoreFromLocalStorage();
-  },
-  computed: {
-    fullAppPackageName() {
-      // Ensure the app package name ends with ".android.app"
-      if (this.appPackageName.endsWith(".android.app")) {
-        return this.appPackageName;
-      } else {
-        return `${this.appPackageName}.android.app`;
-      }
-    },
-  },
   methods: {
     onFileChange(event) {
       this.files = Array.from(event.target.files);
@@ -80,20 +67,24 @@ export default {
       this.files = Array.from(event.target.files);
     },
     downloadFileNames() {
-      // Use the computed package name to get the correct filename
-      const fileName = this.fullAppPackageName ? `${this.fullAppPackageName}.txt` : 'app_info.txt';
+      const fileName = this.appPackageName ? `${this.appPackageName}.txt` : 'app_info.txt';
 
-      // Content for the text file
       let fileContent = `1. App Information:\n`;
       fileContent += `   - App Name: ${this.appName}\n`;
-      fileContent += `   - App Package Name: ${this.fullAppPackageName}\n`;
-      fileContent += `   - App Type: ${this.appType || 'N/A'}\n`;
-      fileContent += `   - Location: ${this.location || 'N/A'}\n`;
-      fileContent += `   - App Store Ranking: ${this.appStoreRanking || 'N/A'}\n\n`;
+      fileContent += `   - App Package Name: ${this.appPackageName}\n`;
+      fileContent += `   - App Type: ${this.appType}\n`;
+      fileContent += `   - Location: ${this.location}\n`;
+      fileContent += `   - App Store Ranking: ${this.appStoreRanking}\n\n`;
 
       fileContent += `2. Testing Notes:\n`;
       this.files.forEach((file, index) => {
-        fileContent += `   - Screenshot ${String(index + 1).padStart(2, '0')}: ${file.name}\n`;
+        // Get the base filename without the extension
+        const baseFileName = file.name.split(".").slice(0, -1).join(".");
+        // Remove any leading numbers and underscores
+        const nameWithoutPrefix = baseFileName.replace(/^[0-9]+_/, "");  // Extract just the descriptive name
+        const formattedName = nameWithoutPrefix;
+
+        fileContent += `   - Screenshot ${String(index + 1).padStart(2, '0')}: ${formattedName}\n`;
       });
 
       const blob = new Blob([fileContent], { type: 'text/plain' });
@@ -108,11 +99,7 @@ export default {
     },
     saveToLocalStorage() {
       const data = {
-        appName: this.appName,
-        appPackageName: this.fullAppPackageName,
-        appType: this.appType,
         location: this.location,
-        appStoreRanking: this.appStoreRanking,
       };
 
       localStorage.setItem("appInfo", JSON.stringify(data));
