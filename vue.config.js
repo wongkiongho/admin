@@ -2,7 +2,7 @@ const webpack = require("webpack");
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-  ? '/admin/' // Replace `my-repo-name` with your GitHub repository name
+  ? '/' // Replace `my-repo-name` with your GitHub repository name
   : '/',
   lintOnSave: false,
   configureWebpack: {

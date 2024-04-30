@@ -12,15 +12,15 @@ const TableList = () => import("@/pages/TableList.vue");
 const txtFile = () => import("@/pages/txtFile.vue");
 
 const routes = [
-  // {
-  //   path: "/",
-  //   redirect: "/login", // Redirect root to the login page initially
-  // },
-  // {
-  //   path: "/login",
-  //   name: "login",
-  //   component: Login,  // Assuming 'Login.vue' is your login component
-  // },
+  {
+    path: "/",
+    redirect: "/login", // Redirect root to the login page initially
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: Login,  // Assuming 'Login.vue' is your login component
+  },
   {
     path: "/",
     component: DashboardLayout,

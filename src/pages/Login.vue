@@ -1,28 +1,25 @@
 <template>
-    <div>
-      <h1>Login</h1>
+  <button @click="googleSignIn">Sign in with Google</button>
+</template>
+
+<script>
+import { auth, GoogleAuthProvider, signInWithPopup } from "../../firebase";
+
+export default {
+  methods: {
+    async googleSignIn() {
       
-      <button @click="goDashboard">Send Sign-In Link</button>
-    </div>
-  </template>
-  
-  <script>
-  
-  export default {
-    data() {
-      return {
-
-      };
+      const provider = new GoogleAuthProvider();
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        console.log('Signed in user:', user);
+        // Handle signed-in user information or navigate to another page
+      } catch (error) {
+        console.error('Error signing in with Google:', error);
+      }
     },
-    methods: {
-      goDashboard() {
-        this.$router.push({ name: 'dashboard' }); // Navigate using the route name
-      },
-
-    },
-    mounted() {
-
-    }
-  };
-  </script>
-  
+    
+  }
+};
+</script>
